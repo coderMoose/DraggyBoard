@@ -6,15 +6,16 @@ This is an app I built to help people learn SwiftUI, as part of the Apple 2023 S
 The app has two modes: a mode where you follow tutorials made to introduce various SwiftUI views, and a mode where you get to build whatever you like.
 
 Here's a demo of the tutorials mode:
+
 <div align="center">
-<video src="https://github.com/coderMoose/DraggyBoard/assets/130883757/adc422ed-2e1f-4b12-b265-fe346ecf5435">
+<video src="https://github.com/coderMoose/DraggyBoard/assets/130883757/00135d99-bb58-4e71-a683-1c5df614e453">
 </div>
+
 
 And here's a demo of the playground mode:
 <div align="center">
-<video src="https://github.com/coderMoose/DraggyBoard/assets/130883757/15fb857a-f941-42d5-84d3-f62cd94f44bf">
+<video src="https://github.com/coderMoose/DraggyBoard/main/assets/130883757/be83ddca-e426-45f5-bef1-4d34c3956b8f">
 </div>
-
 
 
 
@@ -32,7 +33,8 @@ I learned how to code using Swift Playgrounds about 7 years ago. I wanted to bui
 
 ## FEATURES
 - Tutorials that teach a user the basics of SwiftUI. Each tutorial comes with a list of tasks for the user to accomplish.
- ![4](https://github.com/coderMoose/DraggyBoard/assets/130883757/cd2a29bd-bcb6-4d0f-a330-37ac560cd030)
+![tutorial_example](https://github.com/coderMoose/DraggyBoard/assets/130883757/1b12ebc1-dc62-49b0-9bcd-7731d771ebb4)
+
 
 
 - A "Build your own app" mode where the user can drag views on to a board, and see a preview of what it'll look like, and the actual SwiftUI code that would draw it.
@@ -40,15 +42,18 @@ I learned how to code using Swift Playgrounds about 7 years ago. I wanted to bui
 - This code can be copied to the clipboard. (Eventually I want to turn this into an App Store app, and would love to be able to generate a .swiftpm file that Playgrounds can open directly).
 
 - Once you add views to the main VStack, you can click the blue arrow to expand it and see the views. If you tap on any of these views, you get an editor where you can do things like change colors, font sizes, etc...
- ![7](https://github.com/coderMoose/DraggyBoard/assets/130883757/9a96fade-d797-4696-bec0-e9f6cd94f12c)
+![adding_views_example](https://github.com/coderMoose/DraggyBoard/assets/130883757/e869c36c-624e-4c00-9286-a50c7c7b7bc3)
+
 
 
 - The grey bar on the right side is draggable - this allows the user to make the preview bigger or smaller.
- ![8 0](https://github.com/coderMoose/DraggyBoard/assets/130883757/214c9e3e-6146-4787-9671-65e4026a89f7)
+![grey_bar_demo](https://github.com/coderMoose/DraggyBoard/assets/130883757/19d2df59-c905-4305-b531-cf9643f1b556)
+
 
 
 - The user can switch between light and dark mode by clicking on the “…” button in the top right.
- ![8 1](https://github.com/coderMoose/DraggyBoard/assets/130883757/4e8e04ad-4a87-40b9-bb78-6bdee26838d8)
+![dark_mode_demo](https://github.com/coderMoose/DraggyBoard/assets/130883757/d7a7a932-2791-4d87-a389-af711a1e83ae)
+
 
 
 
