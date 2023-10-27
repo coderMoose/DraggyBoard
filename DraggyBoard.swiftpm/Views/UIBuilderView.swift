@@ -177,14 +177,23 @@ struct UIBuilderView: View {
                 showWrongNodeTypeNotification(from: nodeTypeBeingDraggedIn, to: node.nodeType)
                 return false
             }
-            let wasSuccessful = addNewView(ofType: nodeTypeRawValue,
-                                           to: containerNode)
+            let nodeTypeBeingDraggedIn = NodeType(rawValue: nodeTypeRawValue)!
+            if nodeTypeBeingDraggedIn == .barMark && containerNode.nodeType != .chart {
+                showWrongNodeTypeNotification(from: nodeTypeBeingDraggedIn, to: containerNode.nodeType)
+                return false
+            }
+            if containerNode.nodeType == .chart && nodeTypeBeingDraggedIn != .barMark {
+                showWrongNodeTypeNotification(from: nodeTypeBeingDraggedIn, to: containerNode.nodeType)
+                return false
+            }
+            let wasSuccessful = addNewView(ofType: nodeTypeRawValue, to: containerNode)
             return wasSuccessful
         }
     }
     
     private func showWrongNodeTypeNotification(from fromNodeType: NodeType, to toNodeType: NodeType) {
-        notificationText = "Oops! \(fromNodeType.capitalizedName) views can't be added to \(toNodeType.capitalizedName) views - try adding it to an HStack or VStack instead."
+        let destinationNodeText = fromNodeType == .barMark ? "a Chart" : "an HStack or VStack"
+        notificationText = "Oops! \(fromNodeType.capitalizedName) views can't be added to \(toNodeType.capitalizedName) views - try adding it to \(destinationNodeText) instead."
         withAnimation(.linear(duration: 0.8)) {
             showNotification = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
