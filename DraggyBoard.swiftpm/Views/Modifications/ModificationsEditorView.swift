@@ -18,6 +18,11 @@ struct ModificationsEditorView: View {
             } else if let systemImageNode = node as? SystemImageNode {
                 imageModifications(imageNode: systemImageNode)
                 Divider()
+            } else if let chartNode = node as? ChartNode {
+                if chartNode.isEmpty {
+                    Text("This chart is empty - try tapping 'Add BarMark' to add some data.")
+                        .padding(.bottom)
+                }
             } else if let containerNode = node as? ContainerNode {
                 if containerNode.isEmpty {
                     Text("This container is empty - try dragging a Text or Image view here.")
@@ -56,6 +61,9 @@ struct ModificationsEditorView: View {
 
     private var buttons: some View {
         VStack(alignment: .leading, spacing: 10) {
+            if node.nodeType == .chart {
+                button(name: "Add BarMark", imageName: "chart.bar.xaxis", action: addBarMark)
+            }
             if node.nodeType.isContainer && node.hasAtLeastTwoSubNodes {
                 button(name: "Reverse Items", imageName: "arrow.left.arrow.right", action: reverseItems)
             }
@@ -66,6 +74,13 @@ struct ModificationsEditorView: View {
             button(name: "Delete", imageName: "trash", color: .red, action: deleteMe)
         }
         .font(.title3)
+    }
+    
+    private func addBarMark() {
+        withAnimation {
+            (node as? ChartNode)?.addBarMark()
+            redrawEverything()
+        }
     }
     
     private func reverseItems() {

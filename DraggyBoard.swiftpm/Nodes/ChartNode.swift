@@ -12,6 +12,10 @@ class ChartNode: ContainerNode {
         super.init(nodeType: .chart, subNodes: subNodes)
     }
     
+    func addBarMark() {
+        
+    }
+    
     override func asCode(indentLevel: Int = 0) -> String {
         let innerCode = innerCode(indentLevel: indentLevel)
         let result =
