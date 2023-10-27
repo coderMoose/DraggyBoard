@@ -92,19 +92,15 @@ struct TreePreviewer {
     
     private static func drawChart(containing subNodes: [Node], chartNode: ChartNode) -> some View {
         Chart {
-            BarMark(x: .value("Type", "Birds"),
-                    y: .value("Population", 30))
-                .foregroundStyle(.pink)
-
-            BarMark(x: .value("Type", "Dogs"),
-                    y: .value("Population", 50))
-                .foregroundStyle(.green)
-
-            BarMark(x: .value("Type", "Cats"),
-                    y: .value("Population", 20))
-                .foregroundStyle(.blue)
+            ForEach(subNodes) { subNode in
+                drawBarMark(barMarkNode: subNode as! BarMarkNode)
+            }
         }
-        .chartYAxis(.hidden)
+    }
+    
+    private static func drawBarMark(barMarkNode: BarMarkNode) -> some ChartContent {
+        BarMark(x: .value("Type", barMarkNode.label),
+                y: .value("Population", barMarkNode.value))
     }
     
     private static func draw(tree: Node) -> some View {
