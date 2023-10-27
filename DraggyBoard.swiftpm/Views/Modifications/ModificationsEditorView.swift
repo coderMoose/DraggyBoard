@@ -28,7 +28,11 @@ struct ModificationsEditorView: View {
                     Text("This container is empty - try dragging a Text or Image view here.")
                         .padding(.bottom)
                 }
+            } else if let barMarkNode = node as? BarMarkNode {
+                barMarkModifications(barMarkNode: barMarkNode)
+                Divider()
             }
+            
             buttons
                 .font(.title)
         }
@@ -57,6 +61,11 @@ struct ModificationsEditorView: View {
                                         redrawEverything: redrawEverything)
         ImageSizeModificationEditorView(imageSizeModification: imageNode.imageSizeModification,
                                         redrawEverything: redrawEverything)
+    }
+    
+    @ViewBuilder
+    private func barMarkModifications(barMarkNode: BarMarkNode) -> some View {
+        BarColorModificationEditorView(barColorModification: barMarkNode.barColorModification, redrawEverything: redrawEverything)
     }
 
     private var buttons: some View {

@@ -1,3 +1,4 @@
+import Charts
 import SwiftUI
 
 @available(iOS 16, *)
@@ -16,7 +17,16 @@ struct PreviewSubview: View {
     
     @ViewBuilder
     private var viewForNodeType: some View {
-        if let containerNode = tree as? ContainerNode {
+        if let chartNode = tree as? ChartNode {
+           if chartNode.isInsideButton {
+               previewChartView(chartNode: chartNode)
+           } else {
+               previewChartView(chartNode: chartNode)
+                   .onTapGesture {
+                       nodeTracker.toggleSelection(node: tree)
+                   }
+           }
+       } else if let containerNode = tree as? ContainerNode {
             // AnyView seems to fix a compiler hang, without it the app never builds
             // I don't really understand why it works this way, but maybe it changes the type
             // and that's what gets the compiler unstuck?
@@ -51,6 +61,10 @@ struct PreviewSubview: View {
                     }
             }
         }
+    }
+    
+    private func previewChartView(chartNode: ChartNode) -> some View {
+        PreviewChartView(chartNode: chartNode)
     }
     
     private func previewTextView(textNode: TextNode) -> some View {
@@ -96,6 +110,35 @@ private struct PreviewImageView: View {
             .frame(width: imageSizeModification.imageSize,
                    height: imageSizeModification.imageSize)
             .foregroundColor(imageColorModification.imageColor.color)
+    }
+}
+
+@available(iOS 16, *)
+private struct PreviewChartView: View {
+
+    @ObservedObject var chartNode: ChartNode
+
+    var body: some View {
+        Chart {
+            ForEach(chartNode.subNodes ?? []) { subNode in
+                let barMarkNode = subNode as! BarMarkNode
+                PreviewBarMark(barMarkNode: barMarkNode, barColorModification: barMarkNode.barColorModification)
+            }
+        }
+        .id(UUID())
+    }
+}
+
+@available(iOS 16, *)
+private struct PreviewBarMark: ChartContent {
+
+    @ObservedObject var barMarkNode: BarMarkNode
+    @ObservedObject var barColorModification: BarColorModification
+
+    var body: some ChartContent {
+        BarMark(x: .value("Type", barMarkNode.label),
+                y: .value("Value", barMarkNode.value))
+            .foregroundStyle(barColorModification.barColor.color)
     }
 }
 

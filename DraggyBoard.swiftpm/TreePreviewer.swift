@@ -24,8 +24,6 @@ struct TreePreviewer {
             drawList(containing: listNode.subNodes ?? [], listNode: listNode)
         } else if let buttonNode = tree as? ButtonNode {
             drawButton(containing: buttonNode.subNodes ?? [], buttonNode: buttonNode)
-        } else if let chartNode = tree as? ChartNode {
-            drawChart(containing: chartNode.subNodes ?? [], chartNode: chartNode)
         }
     }
     
@@ -90,20 +88,8 @@ struct TreePreviewer {
         }
     }
     
-    private static func drawChart(containing subNodes: [Node], chartNode: ChartNode) -> some View {
-        Chart {
-            ForEach(subNodes) { subNode in
-                drawBarMark(barMarkNode: subNode as! BarMarkNode)
-            }
-        }
-    }
-    
-    private static func drawBarMark(barMarkNode: BarMarkNode) -> some ChartContent {
-        BarMark(x: .value("Type", barMarkNode.label),
-                y: .value("Population", barMarkNode.value))
-    }
-    
     private static func draw(tree: Node) -> some View {
         PreviewSubview(tree: tree)
+            .id(UUID()) // This is needed to make the Chart redraw
     }
 }

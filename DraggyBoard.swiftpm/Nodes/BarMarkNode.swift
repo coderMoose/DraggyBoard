@@ -10,16 +10,18 @@ import Foundation
 class BarMarkNode: Node {
     let label: String
     let value: Int
-
-     init() {
+    
+    let barColorModification = BarColorModification()
+    
+    init() {
         self.label = Self.randomLabel()
         self.value = Int.random(in: 20...100)
-         super.init(nodeType: .barMark, subNodes: nil)
-     }
+        super.init(nodeType: .barMark, subNodes: nil)
+    }
 
-     override func asCode(indentLevel: Int = 0) -> String {
-         "\(indentation(indentLevel))BarMark()\")"
-     }
+    override func asCode(indentLevel: Int = 0) -> String {
+        "\(indentation(indentLevel))BarMark()\")"
+    }
 
     private static func randomLabel() -> String {
         ["Cats", "Dogs", "Birds", "Bears", "Moose", "Eagles", "Foxes", "Apes", "Elk", "Lions", "Horses", "Tigers", "Goats", "Frogs", "Wolves", "Ants", "Lynx", "Owls", "Sharks", "Bees", "Mice", "Hawks", "Cows", "Pigs", "Deer", "Ducks", "Seals", "Fish"].randomElement()!
