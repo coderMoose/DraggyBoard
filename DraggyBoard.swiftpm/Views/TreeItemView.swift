@@ -16,7 +16,7 @@ struct TreeItemView: View {
     @ViewBuilder
     private var nodeDescription: some View {
         switch node.nodeType {
-        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list:
+        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list, .chart:
             Text(node.nodeType.capitalizedName)
         case .text:
             TextFieldView(textNode: node as! TextNode, redrawEverything: redrawEverything)

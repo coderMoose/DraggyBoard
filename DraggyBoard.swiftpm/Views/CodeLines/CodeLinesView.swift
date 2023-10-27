@@ -25,7 +25,7 @@ struct CodeLinesView: View {
             switch node.nodeType {
             case .app:
                 EmptyView()
-            case .hStack, .vStack, .zStack, .picker, .list:
+            case .hStack, .vStack, .zStack, .picker, .list, .chart:
                 ContainerNodeCodeLineView(containerNode: node as! ContainerNode,
                                           indentLevel: indentLevel)
                     .id(node.id)

@@ -11,6 +11,7 @@ enum NodeType: String, CaseIterable {
     case spacer
     case picker
     case list
+    case chart
     
     var capitalizedName: String {
         switch self {
@@ -34,6 +35,8 @@ enum NodeType: String, CaseIterable {
             return "Picker"
         case .list:
             return "List"
+        case .chart:
+            return "Chart"
         }
     }
     
@@ -59,6 +62,8 @@ enum NodeType: String, CaseIterable {
             return "list.bullet"
         case .list:
             return "list.clipboard"
+        case .chart:
+            return "chart.bar.fill"
         }
     }
     
@@ -84,11 +89,19 @@ enum NodeType: String, CaseIterable {
             return "A Picker allows you to choose between a set of choices. Just like an HStack or a VStack, it can contain other views, like Text or Image. Or even an HStack with both Text *and* an Image!"
         case .list:
             return "A List allows you to show items one after the other, and helps you track which one is selected."
+        case .chart:
+            return "A Chart allows you to display a set of data in formats like a bar graph or pie chart"
         }
     }
     
     var isContainer: Bool {
-        self == .hStack || self == .vStack || self == .zStack || self == .picker || self == .list
+        switch self {
+        case .hStack, .vStack, .zStack, .picker, .list, .chart:
+            return true
+        
+        case .app, .text, .image, .button,.spacer:
+            return false
+        }
     }
     
     static var draggableTypes: [Self] {
