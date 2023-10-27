@@ -46,6 +46,8 @@ struct CodeLinesView: View {
             case .button:
                 ButtonCodeLineView(buttonNode: node as! ButtonNode,
                                    indentLevel: indentLevel)
+            case .barMark:
+                Text("BarMark")
             }
         }
     }

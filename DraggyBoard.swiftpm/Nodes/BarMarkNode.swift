@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+class BarMarkNode: Node {
+
+    init() {
+        super.init(nodeType: .barMark, subNodes: nil)
+    }
+
+    override func asCode(indentLevel: Int = 0) -> String {
+        "\(indentation(indentLevel))BarMark()\")"
+    }
+}

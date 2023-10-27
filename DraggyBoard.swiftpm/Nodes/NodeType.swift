@@ -12,6 +12,7 @@ enum NodeType: String, CaseIterable {
     case picker
     case list
     case chart
+    case barMark
     
     var capitalizedName: String {
         switch self {
@@ -37,6 +38,8 @@ enum NodeType: String, CaseIterable {
             return "List"
         case .chart:
             return "Chart"
+        case .barMark:
+            return "BarMark"
         }
     }
     
@@ -64,6 +67,8 @@ enum NodeType: String, CaseIterable {
             return "list.clipboard"
         case .chart:
             return "chart.bar.fill"
+        case .barMark:
+            return "chart.bar.xaxis"
         }
     }
     
@@ -91,6 +96,9 @@ enum NodeType: String, CaseIterable {
             return "A List allows you to show items one after the other, and helps you track which one is selected."
         case .chart:
             return "A Chart allows you to display a set of data in formats like a bar graph or pie chart"
+            
+        case .barMark:
+            return "A BarMark represents a set of data displayed  in a bar chart"
         }
     }
     
@@ -99,7 +107,7 @@ enum NodeType: String, CaseIterable {
         case .hStack, .vStack, .zStack, .picker, .list, .chart:
             return true
         
-        case .app, .text, .image, .button,.spacer:
+        case .app, .text, .image, .button, .spacer, .barMark:
             return false
         }
     }

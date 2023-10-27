@@ -8,12 +8,12 @@
 import Foundation
 
 class ChartNode: ContainerNode {
-    init(subNodes: [Node]?) {
+    init(subNodes: [BarMarkNode]?) {
         super.init(nodeType: .chart, subNodes: subNodes)
     }
     
     func addBarMark() {
-        
+        subNodes?.append(BarMarkNode())
     }
     
     override func asCode(indentLevel: Int = 0) -> String {

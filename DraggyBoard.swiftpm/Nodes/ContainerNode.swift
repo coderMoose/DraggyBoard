@@ -74,6 +74,8 @@ class ContainerNode: Node {
             newNode = Self.makeList()
         case .chart:
             newNode = ChartNode(subNodes: nil)
+        case .barMark:
+            newNode = BarMarkNode()
         }
         appendAndSetParent(node: newNode)
         return newNode.id
