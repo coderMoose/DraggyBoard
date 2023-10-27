@@ -1,3 +1,4 @@
+import Charts
 import SwiftUI
 
 /**
@@ -23,6 +24,8 @@ struct TreePreviewer {
             drawList(containing: listNode.subNodes ?? [], listNode: listNode)
         } else if let buttonNode = tree as? ButtonNode {
             drawButton(containing: buttonNode.subNodes ?? [], buttonNode: buttonNode)
+        } else if let chartNode = tree as? ChartNode {
+            drawChart(containing: chartNode.subNodes ?? [], chartNode: chartNode)
         }
     }
     
@@ -85,6 +88,23 @@ struct TreePreviewer {
             // For now assume a button has a single subnode (i.e. an HStack or a VStack - these can contain additional nodes)
             draw(tree: subNodes.first!)
         }
+    }
+    
+    private static func drawChart(containing subNodes: [Node], chartNode: ChartNode) -> some View {
+        Chart {
+            BarMark(x: .value("Type", "Birds"),
+                    y: .value("Population", 30))
+                .foregroundStyle(.pink)
+
+            BarMark(x: .value("Type", "Dogs"),
+                    y: .value("Population", 50))
+                .foregroundStyle(.green)
+
+            BarMark(x: .value("Type", "Cats"),
+                    y: .value("Population", 20))
+                .foregroundStyle(.blue)
+        }
+        .chartYAxis(.hidden)
     }
     
     private static func draw(tree: Node) -> some View {
