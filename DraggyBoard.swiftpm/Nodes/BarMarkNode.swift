@@ -8,8 +8,8 @@
 import Foundation
 
 class BarMarkNode: Node {
-    let label: String
-    let value: Int
+    @Published var label: String
+    @Published var value: Int
     
     let barColorModification = BarColorModification()
     

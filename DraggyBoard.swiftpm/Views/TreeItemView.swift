@@ -16,8 +16,10 @@ struct TreeItemView: View {
     @ViewBuilder
     private var nodeDescription: some View {
         switch node.nodeType {
-        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list, .chart, .barMark:
+        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list, .chart:
             Text(node.nodeType.capitalizedName)
+        case .barMark:
+            BarMarkView(barMarkNode: node as! BarMarkNode, redrawEverything: redrawEverything)
         case .text:
             TextFieldView(textNode: node as! TextNode, redrawEverything: redrawEverything)
         }
@@ -37,6 +39,24 @@ private struct TextFieldView: View {
             }
         }
         .onChange(of: textNode.displayText) { newValue in
+            redrawEverything()
+        }
+    }
+}
+
+private struct BarMarkView: View {
+    @ObservedObject var barMarkNode: BarMarkNode
+    let redrawEverything: () -> Void
+
+    @EnvironmentObject private var nodeTracker: NodeSelectionTracker
+
+    var body: some View {
+        TextField("test", text: $barMarkNode.label.animation()) { receivedFocus in
+            if receivedFocus {
+                nodeTracker.select(node: barMarkNode)
+            }
+        }
+        .onChange(of: barMarkNode.label) { newValue in
             redrawEverything()
         }
     }
