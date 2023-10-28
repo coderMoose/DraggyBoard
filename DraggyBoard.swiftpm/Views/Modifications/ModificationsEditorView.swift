@@ -65,6 +65,7 @@ struct ModificationsEditorView: View {
     
     @ViewBuilder
     private func barMarkModifications(barMarkNode: BarMarkNode) -> some View {
+        BarValueModificationEditorView(barMarkNode: barMarkNode, redrawEverything: redrawEverything)
         BarColorModificationEditorView(barColorModification: barMarkNode.barColorModification, redrawEverything: redrawEverything)
     }
 

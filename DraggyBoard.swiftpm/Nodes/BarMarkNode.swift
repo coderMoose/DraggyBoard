@@ -9,13 +9,13 @@ import Foundation
 
 class BarMarkNode: Node {
     @Published var label: String
-    @Published var value: Int
+    @Published var value: Double
     
     let barColorModification = BarColorModification()
     
     init() {
         self.label = Self.randomLabel()
-        self.value = Int.random(in: 20...100)
+        self.value = Double.random(in: 20.0...100.0)
         super.init(nodeType: .barMark, subNodes: nil)
     }
 
