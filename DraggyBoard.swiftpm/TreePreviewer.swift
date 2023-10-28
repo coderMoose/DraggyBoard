@@ -72,6 +72,15 @@ struct TreePreviewer {
         .listStyle(PlainListStyle())
     }
     
+    private static func drawChart(containing subNodes: [Node], chartNode: ChartNode) -> some View {
+        Chart {
+            ForEach(subNodes) { subNode in
+                let barMarkNode = subNode as! BarMarkNode
+                PreviewBarMark(barMarkNode: barMarkNode, barColorModification: barMarkNode.barColorModification)
+            }
+        }
+    }
+    
     private static func drawButton(containing subNodes: [Node], buttonNode: ButtonNode) -> some View {
         Button {
             if buttonNode.disableAction {
@@ -88,8 +97,13 @@ struct TreePreviewer {
         }
     }
     
+    @ViewBuilder
     private static func draw(tree: Node) -> some View {
-        PreviewSubview(tree: tree)
-            .id(UUID()) // This is needed to make the Chart redraw
+        if let chartNode = tree as? ChartNode {
+            drawChart(containing: chartNode.subNodes ?? [],
+                      chartNode: chartNode)
+        } else {
+            PreviewSubview(tree: tree)
+        }
     }
 }
