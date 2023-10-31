@@ -69,9 +69,9 @@ enum NodeType: String, CaseIterable {
         case .list:
             return "list.clipboard"
         case .chart:
-            return "chart.bar.fill"
-        case .barMark:
             return "chart.bar.xaxis"
+        case .barMark:
+            return "chart.bar.fill"
         case .divider:
             return "arrow.up.and.line.horizontal.and.arrow.down"
         }

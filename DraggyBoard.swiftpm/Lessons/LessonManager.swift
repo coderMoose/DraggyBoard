@@ -22,6 +22,22 @@ class LessonManager {
                    ),
                tasks: [])
     }
+    static var buildYourOwnChartLesson: Lesson {
+        Lesson(name: "Build Your Own Chart",
+               viewsAllowed: [.chart, .barMark],
+               introAnimationTree:
+                   AppNode(rootNode:
+                       VStackNode(subNodes: [
+                           TextNode(displayText: "Charts"),
+                           // ...
+                       ])
+                   ),
+               tasks: [
+                   LessonTask(text: "Add a chart", completionMessage: "Nice!", stepNumber: 1) {
+                       $0.chartNodes.count >= 1
+                   }
+               ])
+    }
 }
 
 private let firstLesson = Lesson(

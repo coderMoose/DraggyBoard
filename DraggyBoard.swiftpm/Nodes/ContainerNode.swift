@@ -47,6 +47,11 @@ class ContainerNode: Node {
         }) as? [ListNode] ?? []
     }
     
+    var chartNodes: [ChartNode] {
+        (subNodes?.filter {
+            $0 is ChartNode
+        }) as? [ChartNode] ?? []
+    }
     
     func addNewNode(ofType nodeType: NodeType) -> UUID {
         ensureSubNodesNotNil()

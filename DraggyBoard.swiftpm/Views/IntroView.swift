@@ -96,6 +96,11 @@ struct IntroView: View {
             buttonLabel(named: "Tutorials", width: 250)
         }
         NavigationLink {
+            ContentView(currentLesson: LessonManager.buildYourOwnChartLesson, colorScheme: $colorScheme)
+        } label: {
+            buttonLabel(named: "Create Charts", width: 250)
+        }
+        NavigationLink {
             ContentView(currentLesson: LessonManager.buildYourOwnAppLesson, colorScheme: $colorScheme)
         } label: {
             buttonLabel(named: "Build Any App", width: 250)
