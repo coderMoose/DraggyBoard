@@ -20,7 +20,12 @@ class BarMarkNode: Node {
     }
 
     override func asCode(indentLevel: Int = 0) -> String {
-        "\(indentation(indentLevel))BarMark()\")"
+        var allCode = "\(indentation(indentLevel))BarMark(x: .value(\"x\", \"\(label)\"), y: .value(\"y\", \(value)))"
+        if barColorModification.barColor != .primary {
+            let barColorModificationLine = "\(indentation(indentLevel + 1)).foregroundStyle(.\(barColorModification.barColor.rawValue))"
+            allCode += "\n" + barColorModificationLine
+        }
+        return allCode
     }
 
     private static func randomLabel() -> String {

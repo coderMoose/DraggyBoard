@@ -18,6 +18,7 @@ class AppNode: Node {
         let codeForThisNode = rootContainerNode.asCode(indentLevel: 2)
         let codeForTheView =
 """
+import Charts
 import SwiftUI
  
 struct ContentView: View {
