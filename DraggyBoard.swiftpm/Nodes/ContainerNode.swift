@@ -72,6 +72,8 @@ class ContainerNode: Node {
             newNode = makePicker()
         case .list:
             newNode = Self.makeList()
+        case .divider:
+            newNode = DividerNode()
         case .chart:
             newNode = ChartNode(subNodes: nil)
         case .barMark:

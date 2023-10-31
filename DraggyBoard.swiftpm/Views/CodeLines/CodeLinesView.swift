@@ -49,6 +49,9 @@ struct CodeLinesView: View {
             case .barMark:
                 BarMarkCodeLineView(barMarkNode: node as! BarMarkNode, 
                                     indentLevel: indentLevel)
+            case .divider:
+                DividerCodeLineView(dividerNode: node as! DividerNode,
+                                    indentLevel: indentLevel)
             }
         }
     }

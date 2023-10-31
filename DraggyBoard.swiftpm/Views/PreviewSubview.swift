@@ -51,6 +51,15 @@ struct PreviewSubview: View {
                         nodeTracker.toggleSelection(node: tree)
                     }
             }
+        } else if tree is DividerNode {
+            if tree.isInsideButton {
+                Divider()
+            } else {
+                Divider()
+                    .onTapGesture {
+                        nodeTracker.toggleSelection(node: tree)
+                    }
+            }
         }
     }
     

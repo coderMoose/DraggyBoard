@@ -24,6 +24,8 @@ struct TreePreviewer {
             drawList(containing: listNode.subNodes ?? [], listNode: listNode)
         } else if let buttonNode = tree as? ButtonNode {
             drawButton(containing: buttonNode.subNodes ?? [], buttonNode: buttonNode)
+        } else if let dividerNode = tree as? DividerNode {
+            drawDivider(dividerNode: dividerNode)
         }
     }
     
@@ -95,6 +97,10 @@ struct TreePreviewer {
             // For now assume a button has a single subnode (i.e. an HStack or a VStack - these can contain additional nodes)
             draw(tree: subNodes.first!)
         }
+    }
+    
+    private static func drawDivider(dividerNode: DividerNode) -> some View {
+        Divider()
     }
     
     @ViewBuilder

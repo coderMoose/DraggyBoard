@@ -16,7 +16,7 @@ struct TreeItemView: View {
     @ViewBuilder
     private var nodeDescription: some View {
         switch node.nodeType {
-        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list, .chart:
+        case .app, .image, .button, .hStack, .vStack, .zStack, .spacer, .picker, .list, .chart, .divider:
             Text(node.nodeType.capitalizedName)
         case .barMark:
             BarMarkView(barMarkNode: node as! BarMarkNode, redrawEverything: redrawEverything)
