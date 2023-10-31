@@ -107,7 +107,7 @@ struct PreviewBarMark: ChartContent {
     @ObservedObject var barColorModification: BarColorModification
 
     var body: some ChartContent {
-        BarMark(x: .value("Type", barMarkNode.label),
+        BarMark(x: .value("Label", barMarkNode.label),
                 y: .value("Value", barMarkNode.value))
             .foregroundStyle(barColorModification.barColor.color)
     }
