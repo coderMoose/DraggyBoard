@@ -59,6 +59,11 @@ I learned how to code using Swift Playgrounds about 7 years ago. I wanted to bui
 
 - The app supports both portrait and landscape. However, landscape will generally be more convenient.
  
+## SWIFT CHARTS
+**Update (11/01/2023)**: I've recently added support for Swift Charts to the app, which makes it easy for the user to learn how to make Bar Charts in SwiftUI. Here's a demo of how it works:
+<div align="center">
+<video src="https://github.com/coderMoose/DraggyBoard/assets/130883757/5676fbae-08ca-4a76-8c82-f8c9ba6fd671"
+</div>
 
 ## HOW IT WORKS
 - I use a tree data structure to store a set of nodes, each one representing a view that goes on the screen.
