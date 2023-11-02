@@ -30,6 +30,7 @@ class LessonManager {
             barMarkNode.barColorModification.barColor = .indigo
             withAnimation {
                 chartNode.subNodes?.append(barMarkNode)
+                chartNode.objectWillChange.send()
             }
         }
         let lesson = Lesson(name: "Build Your Own Chart",
