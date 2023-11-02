@@ -48,26 +48,16 @@ struct BarMarkCodeLineView: View {
                         codeScroller.scroll(to: barMarkNode)
                     }
                 }
-                barMarkParameter(label: "x")
-                quotationMark
-                if showTextLabel {
-                    Text(barMarkNode.label)
-                        .foregroundColor(colorScheme.codeColors.string)
-                        .transition(.scale.combined(with: .opacity))
-                }
-                quotationMark
-                if showTextName {
-                    Text("), ")
-                        .transition(.scale.combined(with: .opacity))
-                }
             }
+            firstLineParameter
             secondLineParameter
+            closingParen
             if nodeTracker.isSelected(node: barMarkNode) {
                 ExplanationView(explanation: barMarkNode.nodeType.explanation)
             }
             if showForegroundColor {
                 BarMarkColorCodeLineView(barColorModification: barMarkNode.barColorModification,
-                                         indentLevel: indentLevel)
+                                         indentLevel: indentLevel - 1)
             }
         }
         .blur(radius: nodeTracker.blur(for: barMarkNode))
@@ -100,15 +90,42 @@ struct BarMarkCodeLineView: View {
         }
     }
     
+    private var firstLineParameter: some View {
+        HStack(spacing: 0) {
+            Text(String(repeating: " ", count: (indentLevel + 1) * 4))
+                .fixedSize()
+            barMarkParameter(label: "x")
+            quotationMark
+            if showTextLabel {
+                Text(barMarkNode.label)
+                    .foregroundColor(colorScheme.codeColors.string)
+                    .transition(.scale.combined(with: .opacity))
+            }
+            quotationMark
+            if showTextName {
+                Text("), ")
+                    .transition(.scale.combined(with: .opacity))
+            }
+        }
+    }
+    
     private var secondLineParameter: some View {
         HStack(spacing: 0) {
-            Text(String(repeating: " ", count: indentLevel * 4 + 8))
+            Text(String(repeating: " ", count: (indentLevel + 1) * 4))
                 .fixedSize()
             barMarkParameter(label: "y")
             if showTextValue {
                 Text(String(barMarkNode.value))
-                Text("))")
+                Text(")")
             }
+        }
+    }
+    
+    private var closingParen: some View {
+        HStack(spacing: 0) {
+            Text(String(repeating: " ", count: indentLevel * 4))
+                .fixedSize()
+            Text(")")
         }
     }
     
