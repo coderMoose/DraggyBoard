@@ -80,7 +80,7 @@ class ContainerNode: Node {
         case .divider:
             newNode = DividerNode()
         case .chart:
-            newNode = ChartNode(subNodes: nil)
+            newNode = Self.makeChart()
         case .barMark:
             newNode = BarMarkNode()
         }
@@ -125,7 +125,7 @@ class ContainerNode: Node {
             TextNode(displayText: "Apple"),
             TextNode(displayText: "Banana"),
             TextNode(displayText: "Orange"),
-            TextNode(displayText: "Peach"),
+            TextNode(displayText: "Peach")
         ]
         let pickerNode = PickerNode(subNodes: starterNodes)
         for node in starterNodes {
@@ -139,13 +139,25 @@ class ContainerNode: Node {
             TextNode(displayText: "Apple"),
             TextNode(displayText: "Banana"),
             TextNode(displayText: "Orange"),
-            TextNode(displayText: "Peach"),
+            TextNode(displayText: "Peach")
         ]
         let listNode = ListNode(subNodes: starterNodes)
         for node in starterNodes {
             node.parentNode = listNode
         }
         return listNode
+    }
+    
+    static func makeChart() -> ChartNode {
+        let starterNodes = [
+            BarMarkNode(),
+            BarMarkNode()
+        ]
+        let chartNode = ChartNode(subNodes: starterNodes)
+        for node in starterNodes {
+            node.parentNode = chartNode
+        }
+        return chartNode
     }
     
     private func appendAndSetParent(node: Node) {

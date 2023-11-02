@@ -40,7 +40,7 @@ enum NodeType: String, CaseIterable {
         case .chart:
             return "Chart"
         case .barMark:
-            return "BarMark"
+            return "Bar"
         case .divider:
             return "Divider"
         }

@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 class LessonManager {
     static var allLessons = [firstLesson, secondLesson, thirdLesson, fourthLesson, fifthLesson, sixthLesson]
@@ -23,20 +23,41 @@ class LessonManager {
                tasks: [])
     }
     static var buildYourOwnChartLesson: Lesson {
-        Lesson(name: "Build Your Own Chart",
+        
+        let chartNode = ChartNode(subNodes: [BarMarkNode()])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+            let barMarkNode = BarMarkNode()
+            barMarkNode.barColorModification.barColor = .indigo
+            withAnimation {
+                chartNode.subNodes?.append(barMarkNode)
+            }
+        }
+        let lesson = Lesson(name: "Build Your Own Chart",
                viewsAllowed: [.chart, .barMark],
                introAnimationTree:
                    AppNode(rootNode:
                        VStackNode(subNodes: [
                            TextNode(displayText: "Charts"),
-                           // ...
+                           chartNode,
+                           TextNode(displayText: "help you"),
+                           TextNode(displayText: "understand"),
+                           TextNode(displayText: "data", isBold: true, textColor: .indigo),
                        ])
                    ),
                tasks: [
-                   LessonTask(text: "Add a chart", completionMessage: "Nice!", stepNumber: 1) {
+                   LessonTask(text: "Drag a Chart View on to the VStack above", completionMessage: "Nice!", stepNumber: 1) {
                        $0.chartNodes.count >= 1
-                   }
+                   },
+                   LessonTask(text: "Now drag a BarMark on to the Chart View", completionMessage: "See how it added a new bar? BarMarks are used to represent data in a Chart View.", stepNumber: 2) {
+                       $0.chartNodes[0].subNodes!.count == 3
+                   },
+                   LessonTask(text: "Click on the first BarMark in the chart and change its color", completionMessage: "Your fashion sense is spot-on!", stepNumber: 3, checkCompletion: {
+                       let firstNode = ($0.chartNodes[0].subNodes![0] as! BarMarkNode)
+                       return firstNode.barColorModification.barColor != .blue
+                   })
                ])
+        
+        return lesson
     }
 }
 
