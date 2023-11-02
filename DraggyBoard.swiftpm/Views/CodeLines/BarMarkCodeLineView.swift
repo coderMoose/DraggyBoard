@@ -60,12 +60,8 @@ struct BarMarkCodeLineView: View {
                     Text("), ")
                         .transition(.scale.combined(with: .opacity))
                 }
-                barMarkParameter(label: "y")
-                if showTextValue {
-                    Text(String(barMarkNode.value))
-                    Text("))")
-                }
             }
+            secondLineParameter
             if nodeTracker.isSelected(node: barMarkNode) {
                 ExplanationView(explanation: barMarkNode.nodeType.explanation)
             }
@@ -100,6 +96,18 @@ struct BarMarkCodeLineView: View {
                 withAnimation {
                     showForegroundColor = true
                 }
+            }
+        }
+    }
+    
+    private var secondLineParameter: some View {
+        HStack(spacing: 0) {
+            Text(String(repeating: " ", count: indentLevel * 4 + 8))
+                .fixedSize()
+            barMarkParameter(label: "y")
+            if showTextValue {
+                Text(String(barMarkNode.value))
+                Text("))")
             }
         }
     }
